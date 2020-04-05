@@ -1,0 +1,32 @@
+.navbar-brand{
+    padding: 6px 6px;
+}
+.navbar {
+    margin-bottom: auto;
+}
+footer{
+    background-color: #333333;
+}
+.copyright{
+    color: white;
+    text-align: center;
+}
+footer a{
+    color: white;
+}
+.section {
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    align-items: center;
+    background-color: #333333;
+}
+img{width: 100%}
+.btn-group{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+.thumbnail{
+    background-color: #c8d3e7;
+}
