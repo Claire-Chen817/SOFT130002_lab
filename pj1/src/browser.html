@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/browser.css" type="text/css" rel="stylesheet">
+    <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Browser</title>
+</head>
+
+<script type="text/javascript">
+    var city=[
+        ["Tokyo","Osaka","Kamakura"],
+        ["Roma","Milan","Venice","Florence"],
+        ["New York","San Francisco", "Washington"],
+        ["Shanghai","Kunming","Beijing","Yantai"]
+    ];
+    function getCity(){
+        var sltCountry = document.form1.country;
+        var sltCity = document.form1.city;
+        var country = city[sltCountry.selectedIndex - 1];
+        sltCity.length = 1;
+        for (var i=0; i < country.length; i++){
+            sltCity[i+1] = new Option(country[i],country[i]);
+        }
+    }
+</script>
+
+<body>
+    <header>
+        <nav>
+            <a href="Home.html" class="logo"><img src="../img/logo-white.svg" alt=""></a>
+            <ul class="nav-list">
+                <li class="nav-item nav-left"><a href="Home.html" class="nav-link">Home</a></li>
+                <li class="nav-item nav-left is-active"><a href="browser.html" class="nav-link">Browser</a></li>
+                <li class="nav-item nav-left"><a href="search.html" class="nav-link">Search</a></li>
+                <li class="nav-item nav-right has-dropdown">
+                    <a class="nav-link">My Account</a>
+                    <div class="nav-dropdown">
+                        <ul>
+                            <li><a href="upload.html"><i class="fa fa-upload fa-fw" aria-hidden="true"></i>&nbsp;Upload</a></li>
+                            <li><a href="myPhoto.html"><i class="fa fa-photo fa-fw" aria-hidden="true"></i>&nbsp;Photos</a></li>
+                            <li><a href="favorite.html"><i class="fa fa-star fa-fw" aria-hidden="true"></i>&nbsp;Favorite</a></li>
+                            <li><a href="../index.html"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp;Log In</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="phone-nav">
+                <div class="nav-list menu">
+                    <a class="nav-link">MENU</a>
+                    <ul class="phone-dropdown">
+                        <li class="nav-item"><a href="Home.html" class="nav-link">Home</a></li>
+                        <li class="nav-item is-active"><a href="browser.html" class="nav-link">Browser</a></li>
+                        <li class="nav-item"><a href="search.html" class="nav-link">Search</a></li>
+                    </ul>
+                </div>
+                <div class="nav-list account">
+                    <a class="nav-link"><i class="fa fa-paw" aria-hidden="true"></i></a>
+                    <ul class="phone-dropdown">
+                        <li class="nav-item"><a href="upload.html"><i class="fa fa-upload fa-fw" aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a href="myPhoto.html"><i class="fa fa-photo fa-fw" aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a href="favorite.html"><i class="fa fa-star fa-fw" aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a href="../index.html"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<div class="main">
+
+    <aside>
+        <section class="search-by-title">
+            <h1>SEARCH BY TITLE</h1>
+            <form method="post">
+                <input type="search" alt="..."/>
+                <button onclick="alert('search')"><i class="fa fa-search"></i></button>
+            </form>
+        </section>
+        <section class="hot-content">
+            <h1>HOT CONTENT</h1>
+            <ul>
+                <li><a onclick="alert('alert')">CITY</a></li>
+                <li><a onclick="alert('alert')">PEOPLE</a></li>
+                <li><a onclick="alert('alert')">BUILDING</a></li>
+                <li><a onclick="alert('alert')">SCENERY</a></li>
+            </ul>
+        </section>
+        <section class="hot-countries">
+            <h1>HOT COUNTRIES</h1>
+            <ul>
+                <li><a onclick="alert('alert')">JAPAN</a></li>
+                <li><a onclick="alert('alert')">ITALY</a></li>
+            </ul>
+        </section>
+        <section class="hot-cities">
+            <h1>HOT CITIES</h1>
+            <ul>
+                <li><a onclick="alert('alert')">TOKYO</a></li>
+                <li><a onclick="alert('alert')">BEIJING</a></li>
+                <li><a onclick="alert('alert')">MILAN</a></li>
+                <li><a onclick="alert('alert')">SAN FRANCISCO</a></li>
+                <li><a onclick="alert('alert')">FLORENCE</a></li>
+            </ul>
+        </section>
+    </aside>
+
+    <article>
+        <h1>FILTER</h1>
+        <div class="select-row">
+            <form method="get" name="form1">
+                <select name="content" id="by-content">
+                    <option value="0" class="default-op">by CONTENT</option>
+                    <option value="1">SCENERY</option>
+                    <option value="1">ANIMAL</option>
+                    <option value="1">BUILDING</option>
+                    <option value="1">WONDER</option>
+                    <option value="1">PEOPLE</option>
+                    <option value="1">CITY</option>
+                </select>
+                <select name="country" id="by-country" onchange="getCity()">
+                    <option value="0" class="default-op">by COUNTRY</option>
+                    <option value="1">JAPAN</option>
+                    <option value="2">ITALY</option>
+                    <option value="3">AMERICA</option>
+                    <option value="4">CHINA</option>
+                </select>
+                <select name="city" id="by-city">
+                    <option value="0" class="default-op">by CITY</option>
+                    <!--
+                    <option value="1">BEIJING</option>
+                    <option value="1">FLORENCE</option>
+                    <option value="1">KAMAKURA</option>
+                    <option value="1">KUNMING</option>
+                    <option value="1">MILAN</option>
+                    <option value="1">NEW YORK</option>
+                    <option value="1">OSAKA</option>
+                    <option value="1">ROMA</option>
+                    <option value="1">SAN FRANCISCO</option>
+                    <option value="1">SHANGHAI</option>
+                    <option value="1">TOKYO</option>
+                    <option value="1">VENICE</option>
+                    <option value="1">WASHINGTON</option>
+                    <option value="1">YANTAI</option>-->
+                </select>
+
+                <input type="button" id="filter-bt" value="FILTER" name="filter" onclick="alert('加载完毕')">
+            </form>
+        </div>
+
+        <div class="grid">
+            <div class="row">
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/9504451722.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img class="h" src="../img/travel-images/normal/medium/city.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/6115603234.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/field.jpg" alt=""></a></div>
+            </div>
+            <div class="row">
+                <div><a href="detail.html"><img class="h" src="../img/travel-images/normal/medium/6114850721.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/sea.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/8711623884.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/5856616479.jpg" alt=""></a></div>
+            </div>
+            <div class="row">
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/6119127716.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img class="h" src="../img/travel-images/normal/medium/9498358806.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/5855735700.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/8710513053.jpg" alt=""></a></div>
+            </div>
+            <div class="row">
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/222223.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/6114867983.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img class="h" src="../img/travel-images/normal/medium/6115548152.jpg" alt=""></a></div>
+                <div><a href="detail.html"><img src="../img/travel-images/normal/medium/6592317633.jpg" alt=""></a></div>
+            </div>
+        </div>
+
+        <div class="pagination-wrapper">
+            <div class="pagination">
+                <ul>
+                    <li class="pagination-item"><a><i class="fa fa-chevron-left"></i></a></li>
+                    <li class="pagination-item pagination-item-current"><a>1</a></li>
+                    <li class="pagination-item"><a>2</a></li>
+                    <li class="pagination-item"><a>3</a></li>
+                    <li class="pagination-item"><a>4</a></li>
+                    <li class="pagination-item"><a><i class="fa fa-chevron-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+</div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-social">
+                <ul class="footer-social-list">
+                    <li><a><img src="../img/icon/wechat.svg"></a></li>
+                    <li><a><img src="../img/icon/tencentqq.svg"></a></li>
+                    <li><a><img src="../img/icon/email.svg"></a></li>
+                    <li><a><img src="../img/icon/phone.svg"></a></li>
+                </ul>
+            </div>
+            <div class="footer-sitemap">
+                <ul class="footer-sitemap-list">
+                    <li><a href="Home.html">HOME</a></li>
+                    <li><a>ABOUT</a></li>
+                    <li><a>TERMS OF USE</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy;CLAIRECHEN, 2001-2020. ALL RIGHT RESERVED</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -10,7 +10,6 @@ LAB 4 作业要求
 
 e.g. //github.com/mondaylord/SOFT130002_lab
 
-
 -------------------
 
 ### 文件结构
@@ -59,7 +58,7 @@ e.g. //github.com/mondaylord/SOFT130002_lab
 
 如下：
 
-![sample](sample.png)
+![sample](images/md-pics/sample.png)
 
 # DDL
 截止时间为**2020年4月5日23:59:59**
