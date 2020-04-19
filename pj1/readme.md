@@ -4,9 +4,9 @@
 
 陈心诺 19302010078
 
-Github地址：
+Github地址：https://github.com/Claire-Chen817/SOFT130002_lab
 
-Github Pages地址：
+Github Pages地址：https://claire-chen817.github.io/SOFT130002_lab/
 
 ***
 
