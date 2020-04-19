@@ -64,11 +64,11 @@ Github Pages地址：https://claire-chen817.github.io/SOFT130002_lab/
 
 导航栏呈现效果如下
 
-![pc端](C:\Users\cyn\Documents\FDU\1-web\Projects\pj1\img\md-img\pc-nav.jpg)
+![pc端](img/md-img/pc-nav.jpg)
 
 （pc端）
 
-<img src="C:\Users\cyn\Documents\FDU\1-web\Projects\pj1\img\md-img\phone-nav-1.jpg" alt="手机端" style="zoom:50%;" /><img src="C:\Users\cyn\Documents\FDU\1-web\Projects\pj1\img\md-img\phone-nav-2.jpg" alt="手机端" style="zoom:50%;" />
+<img src="img/md-img/phone-nav-1.jpg" alt="手机端" style="zoom:50%;" /><img src="img/md-img/phone-nav-2.jpg" alt="手机端" style="zoom:50%;" />
 
 （手机端）
 
@@ -92,7 +92,7 @@ Github Pages地址：https://claire-chen817.github.io/SOFT130002_lab/
 
 ### PJ1
 
-感觉延续了pj进度比上课进度快的（“优良”）传统，对于没有任何基础的小白来说太艰辛了，再加上由于没在学校找人帮忙debug也比较难。
+感觉延续了pj进度比上课进度快的（“优良”）传统，对于没有任何基础的小白来说太不友好了，再加上由于没在学校找人帮忙debug也比较难。
 
 害，似乎也没办法。
 
