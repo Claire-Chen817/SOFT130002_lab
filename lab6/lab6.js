@@ -232,7 +232,7 @@ function Country() {
 }
 //借用构造函数
 function DevelopingCountry(){
-    Country.call(this,"国家");
+    Country.call(this);
 }
 DevelopingCountry.prototype.sayHi = function sayHi() {
     console.log("Hi,i am a developing country.");
