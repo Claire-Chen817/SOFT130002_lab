@@ -9,12 +9,51 @@
     ①要求使用JS闭包的方式使得计数实现局部私有，不可以在全局区域声明计数变量。
     ②使用console.log打印计数即可，到达一分钟提前停止也需要console.log相应的提示语句。
 */
+let interval = setInterval(testTime,5000);
+let changeValue = (function() {
+    let value = 1;
 
+    return {
+        multiple : function () {
+            value *= 2;
+        },
+        getValue : function () {
+            return value;
+        }
+    }
+})();
+let counter = (function () {
+    let times = 0;
+    return {
+        count : function () {
+            times++;
+        },
+        getTimes : function () {
+            return times;
+        }
+    }
+})();
 function testTime(){
+
+    let d = new Date();
+
+    if (d.getSeconds() === 0){
+        clearInterval(interval);
+        console.log("The eventual value is " + changeValue.getValue() + ". The multiple times is " + counter.getTimes() + ". It stops because of the second.");
+    }
+    else if (counter.getTimes() === 10){
+        clearInterval(interval);
+        console.log("The eventual value is " + changeValue.getValue() + ". The multiple times is " + counter.getTimes() + ". It stops because of the times.");
+    }
+    else{
+        changeValue.multiple();
+        counter.count();
+        console.log("The current value is " +  changeValue.getValue() + ". The multiple times is " + counter.getTimes() + ". The current second is " + d.getSeconds());
+    }
 
 }
 // testTime();
-
+testTime();
 /*
 2.
 要求：
@@ -24,7 +63,20 @@ function testTime(){
     ④telephone与mail均是字符串。
 */
 function testMail(telephone,mail) {
-
+    let telReg = /^1[0-9]{10}$/;
+    let mailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    if (telReg.test(telephone) && mailReg.test(mail)){
+        console.log("The telephone and the mail are both right.");
+    }
+    else if (telReg.test(telephone) && !mailReg.test(mail)){
+        console.log("The telephone is right but the mail is wrong!");
+    }
+    else if (mailReg.test(mail) && !telReg.test(telephone)){
+        console.log("The mail is right but the telephone is wrong!");
+    }
+    else {
+        console.log("The telephone and the mail are both wrong!");
+    }
 }
 
 /*
@@ -37,9 +89,11 @@ function testMail(telephone,mail) {
     ⑤str为字符串。
 */
 function testRedundancy(str) {
-
+    let testReg = /\b([a-z]+) \1\b/gi;
+    let set = new Set(str.match(testReg));
+    console.log(set);
 }
-
+testRedundancy("Is is the iS is cost of of gasoline going up up");
 
 /*
 4.
@@ -56,9 +110,19 @@ function testRedundancy(str) {
     ①注意联系生活，并注意观察我给的上述例子。
 */
 function testKeyBoard(wantInput, actualInput) {
-
+    wantInput = wantInput.toUpperCase();
+    actualInput = actualInput.toUpperCase();
+    let set1 = new Set(wantInput.split(''));
+    let set2 = new Set(actualInput.split(''));
+    for (let i = 0; i < wantInput.length; i++){
+        let c = wantInput.charAt(i);
+        if (set2.has(c)){
+            set1.delete(c);
+        }
+    }
+    console.log(set1);
 }
-
+testKeyBoard("7_This_is_a_test","_hs_s_a_es");
 /*
 5.
 背景：
@@ -72,8 +136,21 @@ function testKeyBoard(wantInput, actualInput) {
     ⑤str为字符串。
 */
 function testSpecialReverse(str) {
-}
+    //let arr = Array(str.split(""));
+    let wordReg = /\b[^\f]{1,}\b/;
+    let arr = Array();
+    let i = 0;
+    while (str.match(wordReg)){
+        let index = str.search(wordReg);
 
+        let sub = str.substr(index,str.match(wordReg).length);
+        str = str.slice(index + str.match(wordReg).length);
+        arr.push(sub);
+    }
+    arr.reverse();
+    return arr.join(" ");
+}
+console.log(testSpecialReverse("  hello  world!  "));
 /*
 6.
 背景：
@@ -90,9 +167,20 @@ function testSpecialReverse(str) {
 */
 
 function twoSum(nums, target) {
+    let numSet = new Set(nums);
+    let numSet1 = new Set();
+    let indexMap = new Map();
+    for (let i = 0; i < (nums.length / 2 + 1); i++){
+        if (numSet.has(target - nums[i]) && !numSet1.has(i)){
+            indexMap.set(i,nums.indexOf(target - nums[i]));
+            numSet1.add(nums.indexOf(target - nums[i]));
+        }
+    }
+    for (let [key,value] of indexMap){
+        console.log("[ "+key+", "+value+" ]");
+    }
 }
-
-
+twoSum([1,2,3,4],5);
 /*
 7.
 背景：
@@ -105,6 +193,29 @@ function twoSum(nums, target) {
     ⑤str为字符串。
 */
 function lengthOfLongestSubstring(str) {
+    if (str === ""){
+        console.log("0");
+    }
+    let length = 0;
+    let maxlength = 0;
+    let strMap = new Map();
+    for (let i=0; i < str.length; i++){
+        if (strMap.has(str.charAt(i))){
+            let l = i - strMap.get(str.charAt(i));
+            if (l > length){
+                length++;
+            }else{
+                length = l;
+            }
+        }else{
+            length++;
+        }
+        strMap.set(str.charAt(i),i);
+        if (length >= maxlength){
+            maxlength = length;
+        }
+    }
+    console.log(maxlength);
 }
 
 /*
@@ -119,3 +230,30 @@ function lengthOfLongestSubstring(str) {
 function Country() {
     this.name = "国家";
 }
+//借用构造函数
+function DevelopingCountry(){
+    Country.call(this,"国家");
+}
+DevelopingCountry.prototype.sayHi = function sayHi() {
+    console.log("Hi,i am a developing country.");
+};
+let instance1 = new DevelopingCountry();
+instance1.sayHi();
+
+//原型链
+function PoorCountry() {}
+PoorCountry.prototype = new Country();
+PoorCountry.prototype.saySad = function () {console.log("I am a sad poor country.");};
+let instance2 = new PoorCountry();
+instance2.saySad();
+
+//Object.create
+class DevelopedCountry{
+    sayHappy() {
+        console.log("I am a Happy developed country.");
+    }
+}
+//DevelopedCountry.prototype.sayHappy = function () {};
+let instance3 = Object.create(DevelopedCountry);
+instance3.sayHappy();
+
