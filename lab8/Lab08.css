@@ -13,11 +13,18 @@ a{
     box-shadow: 0 0 5px green;
     overflow: hidden;
 }
+
 .container .wrap {
     position: absolute;
     width: 4200px;
     height: 400px;
     z-index: 1;
+}
+.nav-next{
+    transition: margin-left 0.5s linear;
+}
+.nav-prev{
+    transition: margin-right 0.5s linear;
 }
 .container .wrap img {
     float: left;
@@ -46,6 +53,9 @@ a{
 .container .buttons span.on{
     background-color: red;
 }
+.container .buttons span.in{
+    visibility: hidden;
+}
 .container .arrow {
     position: absolute;
     top: 35%;
@@ -67,4 +77,12 @@ a{
 }
 .container .arrow:hover {
     background-color: rgba(0,0,0,0.2);
+}
+
+table{
+    margin: 20px auto 0 auto;
+    width: 600px;
+}
+table input {
+    width: 30px;
 }

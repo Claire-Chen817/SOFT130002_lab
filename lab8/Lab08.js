@@ -3,9 +3,14 @@
 /********************************************begin************************************/
 
 /*Global Variable Area */
-
+let container = document.getElementsByClassName("container")[0];
+let wrap = document.getElementsByClassName("wrap")[0];
+let spans = document.getElementsByTagName("span");
+let left_arr = document.getElementsByClassName("arrow arrow_left")[0];
+let right_arr = document.getElementsByClassName("arrow arrow_right")[0];
+let time = null;
+let count = 0;
 /*********************************************end*************************************/
-
 
 
 /* 任务一
@@ -23,10 +28,40 @@
 /********************************************begin************************************/
 
 /*Code Here*/
+function roll_next() {
+    count++;
+    if (count > 4) {
+        spans[4].className = "";
+        count = 0;
+        spans[count].className = "on";
+        wrap.style.marginLeft = "0px";
+    }else{
+        spans[count-1].className = "";
+        wrap.style.marginLeft = (count * -600) + "px";
+        spans[count].className = "on";
+    }
 
+}
+function roll_prev() {
+    count--;
+    if (count < 0) {
+        spans[0].className = "";
+        count = 4;
+        spans[count].className = "on";
+        wrap.style.marginLeft = "-2400px";
+    }else{
+        spans[count+1].className = "";
+        wrap.style.marginLeft = (count * -600) + "px";
+        spans[count].className = "on";
+    }
+}
+left_arr.onclick = function (){
+    roll_prev();
+}
+right_arr.onclick = function () {
+    roll_next()
+}
 /*********************************************end*************************************/
-
-
 
 /* 任务二
  * 请参考css中的style参数、html中的内容、下方的效果要求，然后在下面区域内编写代码。
@@ -40,7 +75,19 @@
 /********************************************begin************************************/
 
 /*Code Here*/
+function showtime() {
+    time = setInterval(function () {
+        roll_next();
+    }, 2000);
+}
 
+showtime();
+container.onmouseenter = function () {
+    clearInterval(time);
+}
+container.onmouseleave = function () {
+    showtime();
+}
 /*********************************************end*************************************/
 
 
@@ -55,6 +102,15 @@
 /********************************************begin************************************/
 
 /*Code Here*/
+for (let i = 0; i < spans.length; i++) {
+    spans[i].index = i;
+    spans[i].onmouseenter = function () {
+        spans[count].className = "";
+        this.className = "on";
+        count = this.index;
+        wrap.style.marginLeft = (count * -600) + "px";
+    }
+}
 
 /*********************************************end*************************************/
 
@@ -70,4 +126,14 @@
 
 /*Code Here*/
 
+$(function(){
+    $(`table td`).click(function(){
+        if(!$(this).is('.input')){
+            $(this).addClass('input').html('<input type="text" value="'+ $(this).text() +'" />').find('input').focus().blur(function(){
+                var value=$(this).val();
+                $(this).parent().removeClass('input').html($(this).val());
+            });
+        }
+    });
+});
 /*********************************************end*************************************/
